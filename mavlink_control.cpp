@@ -182,6 +182,8 @@ top (int argc, char **argv)
 //   COMMANDS
 // ------------------------------------------------------------------------------
 
+float angle_yaw;
+float degree;
 void
 commands(Autopilot_Interface &api, bool autotakeoff)
 {
@@ -305,6 +307,8 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	// --------------------------------------------------------------------------
 	printf("READ SOME MESSAGES \n");
 
+	while(1)
+	{
 	// copy current messages
 	Mavlink_Messages messages = api.current_messages;
 	//Tu struct "MAVLINK_Messages", tao tin nhan "messages", truyen thong tin current_messages vao bien nay
@@ -330,13 +334,16 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	printf("    acc  (NED):  % f % f % f (m/s^2)\n", imu.xacc , imu.yacc , imu.zacc );
 	printf("    gyro (NED):  % f % f % f (rad/s)\n", imu.xgyro, imu.ygyro, imu.zgyro);
 	printf("    mag  (NED):  % f % f % f (Ga)\n"   , imu.xmag , imu.ymag , imu.zmag );
+	degree = imu.zgyro *  57.295779513;  		//Chuyen radian sang Goc
+	angle_yaw += degree;
+	printf("Angle Yaw:  %f \n", angle_yaw);
 	// printf("    baro:        %f (mBar) \n"  , imu.abs_pressure);
 	// printf("    altitude:    %f (m) \n"     , imu.pressure_alt);
 	// printf("    temperature: %f C \n"       , imu.temperature );
 
 	printf("\n");
-
-
+	sleep(0.5);
+}
 	// --------------------------------------------------------------------------
 	//   END OF COMMANDS
 	// --------------------------------------------------------------------------

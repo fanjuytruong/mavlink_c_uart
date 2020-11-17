@@ -326,7 +326,7 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	// printf("Got message LOCAL_POSITION_NED (spec: https://mavlink.io/en/messages/common.html#LOCAL_POSITION_NED)\n");
 	// printf("    pos  (NED):  %f %f %f (m)\n", pos.x, pos.y, pos.z );
 	//xuat ra 3 toa do trong truong (x,y,z)
-
+	mavlink_global_position_int_t GPS = messages.global_position_int;
 	// hires imu
 	mavlink_highres_imu_t imu = messages.highres_imu;
 	// printf("Got message HIGHRES_IMU (spec: https://mavlink.io/en/messages/common.html#HIGHRES_IMU)\n");
@@ -337,6 +337,8 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	degree = imu.zgyro *  57.295779513;  		//Chuyen radian sang Goc
 	angle_yaw += degree;
 	printf("Angle Yaw:  %f \n", angle_yaw);
+	printf("GPS -  Latitude:  % f  Longtitude: % f \n", GPS.lat. GPS.lon);
+	
 	// printf("    baro:        %f (mBar) \n"  , imu.abs_pressure);
 	// printf("    altitude:    %f (m) \n"     , imu.pressure_alt);
 	// printf("    temperature: %f C \n"       , imu.temperature );

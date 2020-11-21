@@ -353,12 +353,24 @@ read_messages()
 					break;
 				}
 
-				case MAVLINK_MSG_ID_GLOBAL_POSITION_INT:
+				case MAVLINK_MSG_ID_GPS_STATUS:
 				{
-					mavlink_msg_global_position_int_decode(&message, &(current_messages.global_position_int));
-					current_messages.time_stamps.global_position_int = get_time_usec();
-					this_timestamps.global_position_int = current_messages.time_stamps.global_position_int;
+					mavlink_msg_gps_status_decode(&message, (&current_messages.gps_status));
+					current_messages.time_stamps.gps_status = get_time_usec();
+					this_timestamps.gps_status = current_messages.time_stamps.gps_status;
+					break;
 				}
+
+				case MAVLINK_MSG_ID_GLOBAL_VISION_POSITION_ESTIMATE:
+				{
+					mavlink_msg_global_vision_position_estimate_decode(&message, (&current_messages.global_vision_position_estimate));
+					current_messages.time_stamps.global_vision_position_estimate = get_time_usec();
+					this_timestamps.global_vision_position_estimate = current_messages.time_stamps.global_vision_position_estimate;
+					break;
+				}
+
+
+
 
 				default:
 				{

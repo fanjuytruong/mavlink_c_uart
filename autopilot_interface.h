@@ -211,6 +211,11 @@ struct Mavlink_Messages {
 	// Attitude
 	mavlink_attitude_t attitude;
 
+	mavlink_gps_status_t gps_status;
+
+	mavlink_global_vision_position_estimate_t global_vision_position_estimate;
+
+
 	// System Parameters?
 
 

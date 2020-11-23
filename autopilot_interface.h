@@ -157,6 +157,7 @@ struct Time_Stamps
 	uint64_t attitude;
 	uint64_t global_vision_position_estimate;
 	uint64_t vfr_hud;
+	uint64_t gps_raw_int;
 
 	void
 	reset_timestamps()
@@ -173,6 +174,7 @@ struct Time_Stamps
 		attitude = 0;
 		global_vision_position_estimate = 0;
 		vfr_hud = 0;
+		gps_raw_int = 0;
 	}
 
 };
@@ -221,6 +223,7 @@ struct Mavlink_Messages {
 
 	mavlink_vfr_hud_t vfr_hud;
 
+	mavlink_gps_raw_int_t gps_raw_int;
 
 	// System Parameters?
 

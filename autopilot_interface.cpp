@@ -657,7 +657,7 @@ start()
 	{
 		if ( time_to_exit )
 			return;
-		usleep(50000); // check at 2Hz
+		usleep(50000); // check at 20Hz
 	}
 
 	printf("Found\n");
@@ -703,7 +703,8 @@ start()
 			return;
 		usleep(500000);
 	}
-
+	while(1)
+	{
 	// copy initial position ned
 	Mavlink_Messages local_data = current_messages;
 	initial_position.x        = local_data.local_position_ned.x;
@@ -715,10 +716,16 @@ start()
 	initial_position.yaw      = local_data.attitude.yaw;
 	initial_position.yaw_rate = local_data.attitude.yawspeed;
 
+
+	int16_t	yaw_uav = local_data.vfr_hud.heading;
+
 	printf("INITIAL POSITION XYZ = [ %.4f , %.4f , %.4f ] \n", initial_position.x, initial_position.y, initial_position.z);
 	printf("INITIAL POSITION YAW = %.4f \n", initial_position.yaw);
 	printf("\n");
 
+	printf("Heading: %i \n ", yaw_uav);
+
+	}
 	// we need this before starting the write thread
 
 

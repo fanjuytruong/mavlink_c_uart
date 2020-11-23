@@ -92,8 +92,8 @@ initialize_defaults()
 	fd     = -1;
 	is_open = false;
 
-	uart_name = (char*)"/dev/ttyUSB0";
-	baudrate  = 57600;
+	uart_name = (char*)"/dev/ttyS0";
+	baudrate  = 921600;
 
 	// Start mutex
 	int result = pthread_mutex_init(&lock, NULL);

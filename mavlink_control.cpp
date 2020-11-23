@@ -343,7 +343,7 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	//angle_yaw += degree;
 	//printf("Angle Yaw:  %f \n", angle_yaw);
 	//printf("GPS -  Latitude:  % f  Longtitude: % f \n", GPS.lat. GPS.lon);
-	printf("Altitude: %f %f  %f \n", 	attitude.roll, attitude.pitch, attitude.yaw);
+	printf("Attitude: %f %f  %f \n", 	attitude.roll, attitude.pitch, attitude.yaw);
 	// printf("    baro:        %f (mBar) \n"  , imu.abs_pressure);
 	// printf("    altitude:    %f (m) \n"     , imu.pressure_alt);
 	// printf("    temperature: %f C \n"       , imu.temperature );

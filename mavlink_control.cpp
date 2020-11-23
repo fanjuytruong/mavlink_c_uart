@@ -331,7 +331,7 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 
 	mavlink_attitude_t attitude = messages.attitude;
 
-	mavlink_vfr_hud_t vft_hud = messages.vfr_hud;
+	mavlink_vfr_hud_t vfr_hud = messages.vfr_hud;
 	// printf("Got message HIGHRES_IMU (spec: https://mavlink.io/en/messages/common.html#HIGHRES_IMU)\n");
 	// printf("    ap time:     %lu \n", imu.time_usec);
 	//printf("    acc  (NED):  % f % f % f (m/s^2)\n", imu.xacc , imu.yacc , imu.zacc );
@@ -352,7 +352,7 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	printf("Heading: %f \n", vfr_hud.heading );
 	printf("Altitude: %f \n", vfr_hud.alt);
 
-	
+
 	printf("\n");
 	sleep(1);
 }

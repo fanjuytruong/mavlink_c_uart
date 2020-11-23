@@ -657,7 +657,7 @@ start()
 	{
 		if ( time_to_exit )
 			return;
-		usleep(500000); // check at 2Hz
+		usleep(50000); // check at 2Hz
 	}
 
 	printf("Found\n");

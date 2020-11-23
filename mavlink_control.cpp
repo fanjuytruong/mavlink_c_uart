@@ -182,8 +182,6 @@ top (int argc, char **argv)
 //   COMMANDS
 // ------------------------------------------------------------------------------
 
-float angle_yaw;
-float degree;
 void
 commands(Autopilot_Interface &api, bool autotakeoff)
 {
@@ -354,7 +352,7 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 
 
 	printf("\n");
-	sleep(0.5);
+	//sleep(0.5);
 }
 	// --------------------------------------------------------------------------
 	//   END OF COMMANDS

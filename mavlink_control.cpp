@@ -315,8 +315,6 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	//current_messages bao gom cac truong(fields):
 	//heartbeat, sys_status, battery, radio, highres_imu, attitude, local_pos_ned, pos_target_local...
 
-	
-
 	// local position in ned frame
 	//Struct "mavlink_local_pos_ned_t" bao gom: Position (X,Y,Z) va Speed Position (VX, VY, VZ)
 	// mavlink_local_position_ned_t pos = messages.local_position_ned;
@@ -330,6 +328,8 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	//mavlink_global_position_int_t location = messages.global_position_int;
 	// hires imu
 	mavlink_highres_imu_t imu = messages.highres_imu;
+
+	mavlink_altitude_t altitude = messages.altitude;
 	// printf("Got message HIGHRES_IMU (spec: https://mavlink.io/en/messages/common.html#HIGHRES_IMU)\n");
 	// printf("    ap time:     %lu \n", imu.time_usec);
 	printf("    acc  (NED):  % f % f % f (m/s^2)\n", imu.xacc , imu.yacc , imu.zacc );
@@ -343,7 +343,7 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	//angle_yaw += degree;
 	//printf("Angle Yaw:  %f \n", angle_yaw);
 	//printf("GPS -  Latitude:  % f  Longtitude: % f \n", GPS.lat. GPS.lon);
-
+	printf("Altitude: %f \n", 	altitude.altitude_amsl);
 	// printf("    baro:        %f (mBar) \n"  , imu.abs_pressure);
 	// printf("    altitude:    %f (m) \n"     , imu.pressure_alt);
 	// printf("    temperature: %f C \n"       , imu.temperature );

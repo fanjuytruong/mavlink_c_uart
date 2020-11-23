@@ -330,24 +330,29 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	mavlink_highres_imu_t imu = messages.highres_imu;
 
 	mavlink_attitude_t attitude = messages.attitude;
+
+	mavlink_vfr_hud_t vft_hud = messages.vfr_hud;
 	// printf("Got message HIGHRES_IMU (spec: https://mavlink.io/en/messages/common.html#HIGHRES_IMU)\n");
 	// printf("    ap time:     %lu \n", imu.time_usec);
-	printf("    acc  (NED):  % f % f % f (m/s^2)\n", imu.xacc , imu.yacc , imu.zacc );
-	printf("    gyro (NED):  % f % f % f (rad/s)\n", imu.xgyro, imu.ygyro, imu.zgyro);
-	printf("    mag  (NED):  % f % f % f (Ga)\n"   , imu.xmag , imu.ymag , imu.zmag );
+	//printf("    acc  (NED):  % f % f % f (m/s^2)\n", imu.xacc , imu.yacc , imu.zacc );
+	//printf("    gyro (NED):  % f % f % f (rad/s)\n", imu.xgyro, imu.ygyro, imu.zgyro);
+	//printf("    mag  (NED):  % f % f % f (Ga)\n"   , imu.xmag , imu.ymag , imu.zmag );
 
 
-	printf("	Position: % f % f % f  \n", pos_estimate.x, pos_estimate.y, pos_estimate.z);		//Xuat vi tri kinh do - vi do
-	printf("	Angle: % f %f %f \n", pos_estimate.roll, pos_estimate.pitch, pos_estimate.yaw);		// Xuat cac goc ngang cua UAV
+	//printf("	Position: % f % f % f  \n", pos_estimate.x, pos_estimate.y, pos_estimate.z);		//Xuat vi tri kinh do - vi do
+	//printf("	Angle: % f %f %f \n", pos_estimate.roll, pos_estimate.pitch, pos_estimate.yaw);		// Xuat cac goc ngang cua UAV
 	//degree = imu.zgyro *  57.295779513;  		//Chuyen radian sang Goc
 	//angle_yaw += degree;
 	//printf("Angle Yaw:  %f \n", angle_yaw);
 	//printf("GPS -  Latitude:  % f  Longtitude: % f \n", GPS.lat. GPS.lon);
-	printf("Attitude: %f %f  %f \n", 	attitude.roll, attitude.pitch, attitude.yaw);
+	//printf("Attitude: %f %f  %f \n", 	attitude.roll, attitude.pitch, attitude.yaw);
 	// printf("    baro:        %f (mBar) \n"  , imu.abs_pressure);
 	// printf("    altitude:    %f (m) \n"     , imu.pressure_alt);
 	// printf("    temperature: %f C \n"       , imu.temperature );
+	printf("Heading: %f \n", vfr_hud.heading );
+	printf("Altitude: %f \n", vfr_hud.alt);
 
+	
 	printf("\n");
 	sleep(1);
 }

@@ -354,7 +354,7 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 
 
 	printf("\n");
-	sleep(1);
+	sleep(0.5);
 }
 	// --------------------------------------------------------------------------
 	//   END OF COMMANDS

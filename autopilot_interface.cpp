@@ -724,6 +724,7 @@ start()
 	printf("\n");
 
 	printf("Heading: %i \n ", yaw_uav);
+	usleep(1000000);
 
 	}
 	// we need this before starting the write thread

@@ -349,7 +349,7 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	// printf("    temperature: %f C \n"       , imu.temperature );
 
 	printf("\n");
-	sleep(0.5);
+	sleep(1);
 }
 	// --------------------------------------------------------------------------
 	//   END OF COMMANDS

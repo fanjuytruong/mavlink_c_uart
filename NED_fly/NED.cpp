@@ -153,7 +153,7 @@ top (int argc, char **argv)
 	/*
 	 * Now we can implement the algorithm we want on top of the autopilot interface
 	 */
-	//commands(autopilot_interface, autotakeoff);
+	commands(autopilot_interface, autotakeoff);
 
 
 	// --------------------------------------------------------------------------
@@ -182,6 +182,8 @@ top (int argc, char **argv)
 //   COMMANDS
 // ------------------------------------------------------------------------------
 
+float angle_yaw;
+float degree;
 void
 commands(Autopilot_Interface &api, bool autotakeoff)
 {
@@ -313,6 +315,8 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	//current_messages bao gom cac truong(fields):
 	//heartbeat, sys_status, battery, radio, highres_imu, attitude, local_pos_ned, pos_target_local...
 
+	
+
 	// local position in ned frame
 	//Struct "mavlink_local_pos_ned_t" bao gom: Position (X,Y,Z) va Speed Position (VX, VY, VZ)
 	// mavlink_local_position_ned_t pos = messages.local_position_ned;
@@ -322,37 +326,25 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	// printf("Got message LOCAL_POSITION_NED (spec: https://mavlink.io/en/messages/common.html#LOCAL_POSITION_NED)\n");
 	// printf("    pos  (NED):  %f %f %f (m)\n", pos.x, pos.y, pos.z );
 	//xuat ra 3 toa do trong truong (x,y,z)
-	//mavlink_global_vision_position_estimate_t pos_estimate = messages.global_vision_position_estimate;
-	//mavlink_global_position_int_t location = messages.global_position_int;
+	mavlink_global_position_int_t location = messages.global_position_int;
 	// hires imu
-	//mavlink_highres_imu_t imu = messages.highres_imu;
-
-	//mavlink_attitude_t attitude = messages.attitude;
-
-	mavlink_vfr_hud_t vfr_hud = messages.vfr_hud;
+	mavlink_highres_imu_t imu = messages.highres_imu;
 	// printf("Got message HIGHRES_IMU (spec: https://mavlink.io/en/messages/common.html#HIGHRES_IMU)\n");
 	// printf("    ap time:     %lu \n", imu.time_usec);
-	//printf("    acc  (NED):  % f % f % f (m/s^2)\n", imu.xacc , imu.yacc , imu.zacc );
-	//printf("    gyro (NED):  % f % f % f (rad/s)\n", imu.xgyro, imu.ygyro, imu.zgyro);
-	//printf("    mag  (NED):  % f % f % f (Ga)\n"   , imu.xmag , imu.ymag , imu.zmag );
-
-
-	//printf("	Position: % f % f % f  \n", pos_estimate.x, pos_estimate.y, pos_estimate.z);		//Xuat vi tri kinh do - vi do
-	//printf("	Angle: % f %f %f \n", pos_estimate.roll, pos_estimate.pitch, pos_estimate.yaw);		// Xuat cac goc ngang cua UAV
+	printf("    acc  (NED):  % f % f % f (m/s^2)\n", imu.xacc , imu.yacc , imu.zacc );
+	printf("    gyro (NED):  % f % f % f (rad/s)\n", imu.xgyro, imu.ygyro, imu.zgyro);
+	printf("    mag  (NED):  % f % f % f (Ga)\n"   , imu.xmag , imu.ymag , imu.zmag );
 	//degree = imu.zgyro *  57.295779513;  		//Chuyen radian sang Goc
 	//angle_yaw += degree;
 	//printf("Angle Yaw:  %f \n", angle_yaw);
 	//printf("GPS -  Latitude:  % f  Longtitude: % f \n", GPS.lat. GPS.lon);
-	//printf("Attitude: %f %f  %f \n", 	attitude.roll, attitude.pitch, attitude.yaw);
+
 	// printf("    baro:        %f (mBar) \n"  , imu.abs_pressure);
 	// printf("    altitude:    %f (m) \n"     , imu.pressure_alt);
 	// printf("    temperature: %f C \n"       , imu.temperature );
-	printf("Heading: %i \n", vfr_hud.heading );
-	//printf("Altitude: %f \n", vfr_hud.alt);
-
 
 	printf("\n");
-	//sleep(0.5);
+	sleep(0.5);
 }
 	// --------------------------------------------------------------------------
 	//   END OF COMMANDS

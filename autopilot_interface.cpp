@@ -353,12 +353,31 @@ read_messages()
 					break;
 				}
 
-				case MAVLINK_MSG_ID_GLOBAL_POSITION_INT:
+			/*	case MAVLINK_MSG_ID_GPS_STATUS:
 				{
-					mavlink_msg_global_position_int_decode(&message, &(current_messages.global_position_int));
-					current_messages.time_stamps.global_position_int = get_time_usec();
-					this_timestamps.global_position_int = current_messages.time_stamps.global_position_int;
+					mavlink_msg_gps_status_decode(&message, (&current_messages.gps_status));
+					current_messages.time_stamps.gps_status = get_time_usec();
+					this_timestamps.gps_status = current_messages.time_stamps.gps_status;
+					break;
+				}	*/
+
+				case MAVLINK_MSG_ID_GLOBAL_VISION_POSITION_ESTIMATE:
+				{
+					mavlink_msg_global_vision_position_estimate_decode(&message, (&current_messages.global_vision_position_estimate));
+					current_messages.time_stamps.global_vision_position_estimate = get_time_usec();
+					this_timestamps.global_vision_position_estimate = current_messages.time_stamps.global_vision_position_estimate;
+					break;
 				}
+
+				case MAVLINK_MSG_ID_VFR_HUD:
+				{
+					mavlink_msg_vfr_hud_decode(&message, (&current_messages.vfr_hud));
+					//current_messages.time_stamps.vfr_hud = get_time_usec();
+					//this_timestamps.vfr_hud = current_messages.vfr_hud;
+					break;
+				}
+
+
 
 				default:
 				{
@@ -638,7 +657,7 @@ start()
 	{
 		if ( time_to_exit )
 			return;
-		usleep(500000); // check at 2Hz
+		usleep(50000); // check at 20Hz
 	}
 
 	printf("Found\n");
@@ -684,7 +703,8 @@ start()
 			return;
 		usleep(500000);
 	}
-
+	while(1)
+	{
 	// copy initial position ned
 	Mavlink_Messages local_data = current_messages;
 	initial_position.x        = local_data.local_position_ned.x;
@@ -696,10 +716,17 @@ start()
 	initial_position.yaw      = local_data.attitude.yaw;
 	initial_position.yaw_rate = local_data.attitude.yawspeed;
 
+
+	int16_t	yaw_uav = local_data.vfr_hud.heading;
+
 	printf("INITIAL POSITION XYZ = [ %.4f , %.4f , %.4f ] \n", initial_position.x, initial_position.y, initial_position.z);
 	printf("INITIAL POSITION YAW = %.4f \n", initial_position.yaw);
 	printf("\n");
 
+	printf("Heading: %i \n ", yaw_uav);
+	usleep(1000000);
+
+	}
 	// we need this before starting the write thread
 
 

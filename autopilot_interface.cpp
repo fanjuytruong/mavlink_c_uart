@@ -353,13 +353,13 @@ read_messages()
 					break;
 				}
 
-				case MAVLINK_MSG_ID_GPS_STATUS:
+			/*	case MAVLINK_MSG_ID_GPS_STATUS:
 				{
 					mavlink_msg_gps_status_decode(&message, (&current_messages.gps_status));
 					current_messages.time_stamps.gps_status = get_time_usec();
 					this_timestamps.gps_status = current_messages.time_stamps.gps_status;
 					break;
-				}
+				}	*/
 
 				case MAVLINK_MSG_ID_GLOBAL_VISION_POSITION_ESTIMATE:
 				{

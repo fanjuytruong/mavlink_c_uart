@@ -327,7 +327,7 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	// printf("    pos  (NED):  %f %f %f (m)\n", pos.x, pos.y, pos.z );
 	//xuat ra 3 toa do trong truong (x,y,z)
 	mavlink_global_vision_position_estimate_t pos_estimate = messages.global_vision_position_estimate;
-	mavlink_global_position_int_t location = messages.global_position_int;
+	//mavlink_global_position_int_t location = messages.global_position_int;
 	// hires imu
 	mavlink_highres_imu_t imu = messages.highres_imu;
 	// printf("Got message HIGHRES_IMU (spec: https://mavlink.io/en/messages/common.html#HIGHRES_IMU)\n");
@@ -335,8 +335,10 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	printf("    acc  (NED):  % f % f % f (m/s^2)\n", imu.xacc , imu.yacc , imu.zacc );
 	printf("    gyro (NED):  % f % f % f (rad/s)\n", imu.xgyro, imu.ygyro, imu.zgyro);
 	printf("    mag  (NED):  % f % f % f (Ga)\n"   , imu.xmag , imu.ymag , imu.zmag );
-	printf("	Position: % f % f % f  \n", pos_estimate.x, pos_estimate.y, pos_estimate.z);
-	printf("	Angle: % f %f %f \n", pos_estimate.roll, pos_estimate.pitch, pos_estimate.yaw);
+
+
+	printf("	Position: % f % f % f  \n", pos_estimate.x, pos_estimate.y, pos_estimate.z);		//Xuat vi tri kinh do - vi do
+	printf("	Angle: % f %f %f \n", pos_estimate.roll, pos_estimate.pitch, pos_estimate.yaw);		// Xuat cac goc ngang cua UAV
 	//degree = imu.zgyro *  57.295779513;  		//Chuyen radian sang Goc
 	//angle_yaw += degree;
 	//printf("Angle Yaw:  %f \n", angle_yaw);

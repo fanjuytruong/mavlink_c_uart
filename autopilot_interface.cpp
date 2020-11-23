@@ -727,8 +727,6 @@ start()
 	int32_t latitude = local_data.gps_raw_int.lat;
 	int32_t longtitude = local_data.gps_raw_int.lon;
 
-	float lat_f, lon_f;
-
 
 	//printf("INITIAL POSITION XYZ = [ %.4f , %.4f , %.4f ] \n", initial_position.x, initial_position.y, initial_position.z);
 	//printf("INITIAL POSITION YAW = %.4f \n", initial_position.yaw);
@@ -736,7 +734,7 @@ start()
 
 	printf("	La Ban (compass): %i \n ", yaw_uav);
 
-	printf("	Latitude: %d.%07d Longtitude %d.%07d \n", abs(latitude/10000000), abs(latitude % 10000000), abs(longtitude/10000000), abs(longtitude/10000000);
+	printf("	Latitude: %d.%07d Longtitude %d.%07d \n", abs(latitude/10000000), abs(latitude % 10000000), abs(longtitude/10000000), abs(longtitude/10000000));
 	printf("\n");
 	sleep(1);
 

@@ -350,7 +350,7 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	// printf("    altitude:    %f (m) \n"     , imu.pressure_alt);
 	// printf("    temperature: %f C \n"       , imu.temperature );
 	printf("Heading: %f \n", vfr_hud.heading );
-	printf("Altitude: %f \n", vfr_hud.alt);
+	printf("Altitude "%" PRId16 \n", vfr_hud.alt);
 
 
 	printf("\n");

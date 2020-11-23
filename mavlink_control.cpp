@@ -324,12 +324,12 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	// printf("Got message LOCAL_POSITION_NED (spec: https://mavlink.io/en/messages/common.html#LOCAL_POSITION_NED)\n");
 	// printf("    pos  (NED):  %f %f %f (m)\n", pos.x, pos.y, pos.z );
 	//xuat ra 3 toa do trong truong (x,y,z)
-	mavlink_global_vision_position_estimate_t pos_estimate = messages.global_vision_position_estimate;
+	//mavlink_global_vision_position_estimate_t pos_estimate = messages.global_vision_position_estimate;
 	//mavlink_global_position_int_t location = messages.global_position_int;
 	// hires imu
-	mavlink_highres_imu_t imu = messages.highres_imu;
+	//mavlink_highres_imu_t imu = messages.highres_imu;
 
-	mavlink_attitude_t attitude = messages.attitude;
+	//mavlink_attitude_t attitude = messages.attitude;
 
 	mavlink_vfr_hud_t vfr_hud = messages.vfr_hud;
 	// printf("Got message HIGHRES_IMU (spec: https://mavlink.io/en/messages/common.html#HIGHRES_IMU)\n");
@@ -349,8 +349,8 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	// printf("    baro:        %f (mBar) \n"  , imu.abs_pressure);
 	// printf("    altitude:    %f (m) \n"     , imu.pressure_alt);
 	// printf("    temperature: %f C \n"       , imu.temperature );
-	printf("Heading: %f \n", vfr_hud.heading );
-	printf("Altitude "%" PRId16 \n", vfr_hud.alt);
+	printf("Heading: %i \n", vfr_hud.heading );
+	//printf("Altitude: %f \n", vfr_hud.alt);
 
 
 	printf("\n");

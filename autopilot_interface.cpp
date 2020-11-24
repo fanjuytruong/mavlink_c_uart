@@ -53,6 +53,14 @@
 // ------------------------------------------------------------------------------
 
 #include "autopilot_interface.h"
+#include "stdio.h"
+#include "iostream"
+using namespace std;
+
+
+int yaw;
+float pwm_out;
+float value = 0.0898;
 
 
 // ----------------------------------------------------------------------------------
@@ -626,7 +634,8 @@ toggle_offboard_control( bool flag )
 void
 Autopilot_Interface::
 start()
-{
+{	
+
 	int result;
 
 	// --------------------------------------------------------------------------
@@ -709,6 +718,11 @@ start()
 			return;
 		usleep(500000);
 	}
+
+	wiringPiSetup();
+	pinMode(1, PWM_OUTPUT);
+	softPwmCreate(1, pwm_out, 200);
+
 	while(1)
 	{
 	// copy initial position ned
@@ -727,6 +741,22 @@ start()
 	int32_t latitude = local_data.gps_raw_int.lat;
 	int32_t longtitude = local_data.gps_raw_int.lon;
 
+	if (yaw_uav > 270 && yaw_uav < 360)
+		{
+			pwm_out = 5 + (yaw_uav - 270) * value;
+		}
+	else if ( yaw_uav >= 0 && yaw_uav < 90)
+		{
+			pwm_out = 13 + (yaw_uav - 0) * value;
+		} 
+	else
+		{
+		    pwm_out = 13;
+		}
+
+	softPwmWrite(1, pwm_out);
+
+
 
 	//printf("INITIAL POSITION XYZ = [ %.4f , %.4f , %.4f ] \n", initial_position.x, initial_position.y, initial_position.z);
 	//printf("INITIAL POSITION YAW = %.4f \n", initial_position.yaw);
@@ -734,8 +764,11 @@ start()
 
 	printf("	La Ban (compass): %i \n ", yaw_uav);
 
-	printf("	Latitude: %d.%07d Longtitude %d.%07d \n", abs(latitude/10000000), abs(latitude % 10000000), abs(longtitude/10000000), abs(longtitude/10000000));
+
+	//printf("	Latitude: %d.%07d Longtitude %d.%07d \n", abs(latitude/10000000), abs(latitude % 10000000), abs(longtitude/10000000), abs(longtitude/10000000));
 	printf("\n");
+
+
 	sleep(1);
 
 	}

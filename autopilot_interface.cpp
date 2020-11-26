@@ -54,13 +54,11 @@
 
 #include "autopilot_interface.h"
 #include "stdio.h"
-#include "iostream"
-<<<<<<< HEAD
+#include <inttypes.h>
+#include <iostream>
 
-=======
-#include "wiringPi.h"
-#include "softPwm.h"
->>>>>>> f7273c687fb23071f457c338ff257bca69cc27d1
+//#include "wiringPi.h"
+//#include "softPwm.h"
 using namespace std;
 
 
@@ -396,6 +394,15 @@ read_messages()
 					mavlink_msg_gps_raw_int_decode(&message, (&current_messages.gps_raw_int));
 					//current_messages.time_stamps.gps_raw_int = get_time_usec();
 					//this_timestamps.gps_raw_int = current_messages.gps_raw_int;
+					break;
+				}
+
+				case MAVLINK_MSG_ID_FLIGHT_INFORMATION:
+				{
+					mavlink_msg_flight_information_decode(&message, (&current_messages.flight_information));
+					//current_messages.time_stamps.flight_information = get_time_usec();
+					//this_timestamps.flight_information = current_messages.flight_information;
+					break;
 				}
 
 
@@ -642,10 +649,10 @@ Autopilot_Interface::
 start()
 {	
 	
-	wiringPiSetup();
-	pinMode(1, PWM_OUTPUT);
-	softPwmCreate(1, 5, 200);
-	sleep(2);
+	//wiringPiSetup();
+	//pinMode(1, PWM_OUTPUT);
+	//softPwmCreate(1, 5, 200);
+	//sleep(2);
 	int result;
 
 	// --------------------------------------------------------------------------
@@ -746,6 +753,8 @@ start()
 	initial_position.yaw_rate = local_data.attitude.yawspeed;
 
 
+	uint64_t Arm_time = local_data.flight_information.arming_time_utc;
+	//uint64_t Takeoff_time = local_data.flight_information.takeoff_time_utc;
 	int16_t	yaw_uav = local_data.vfr_hud.heading;
 	//int32_t latitude = local_data.gps_raw_int.lat;
 	//int32_t longtitude = local_data.gps_raw_int.lon;
@@ -763,7 +772,7 @@ start()
 		    pwm_out = 13;
 		}
 
-	softPwmWrite(1, pwm_out);
+	//softPwmWrite(1, pwm_out);
 
 
 
@@ -772,7 +781,9 @@ start()
 	//printf("\n");
 
 	printf("	La Ban (compass): %i \n ", yaw_uav);
+	printf("%" PRIu64 "\n", Arm_time);
 
+	//printf(" 	Takeoff time: %i \n", Takeoff_time );
 	//printf("	Latitude: %d.%07d Longtitude %d.%07d \n", abs(latitude/10000000), abs(latitude % 10000000), abs(longtitude/10000000), abs(longtitude/10000000));
 	printf("\n");
 

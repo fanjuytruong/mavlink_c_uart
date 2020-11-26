@@ -268,7 +268,7 @@ static inline uint64_t mavlink_msg_flight_information_get_flight_uuid(const mavl
 }
 
 /**
- * @brief Decode a flight_information message into a struct
+ * @brief decode a flight_information message into a struct
  *
  * @param msg The message to decode
  * @param flight_information C-struct to decode the message contents into

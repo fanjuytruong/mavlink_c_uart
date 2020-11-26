@@ -405,6 +405,12 @@ read_messages()
 					break;
 				}
 
+				case MAVLINK_MSG_ID_SYSTEM_TIME:
+				{
+					mavlink_msg_system_time_decode(&message, (&current_messages.system_time));
+
+					break;
+				}
 
 				default:
 				{
@@ -758,7 +764,7 @@ start()
 	int16_t	yaw_uav = local_data.vfr_hud.heading;
 	//int32_t latitude = local_data.gps_raw_int.lat;
 	//int32_t longtitude = local_data.gps_raw_int.lon;
-
+	uint64_t time = local_data.system_time.time_unix_usec;
 	if (yaw_uav > 270 && yaw_uav < 360)
 		{
 			pwm_out = 5 + (yaw_uav - 270) * value;
@@ -782,6 +788,7 @@ start()
 
 	printf("	La Ban (compass): %i \n ", yaw_uav);
 	printf("%" PRIu64 "\n", Arm_time);
+	printf("%" PRIu64 "\n", time );
 
 	//printf(" 	Takeoff time: %i \n", Takeoff_time );
 	//printf("	Latitude: %d.%07d Longtitude %d.%07d \n", abs(latitude/10000000), abs(latitude % 10000000), abs(longtitude/10000000), abs(longtitude/10000000));

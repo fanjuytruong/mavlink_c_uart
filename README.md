@@ -14,7 +14,7 @@ $ cd c_uart_interface_example/
 $ make
 ```
 
-Hardware Setup
+Hardware Setup   
 =========
 
 Connect the USB programming cable to your Pixhawk.  

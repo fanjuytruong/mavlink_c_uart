@@ -55,7 +55,12 @@
 #include "autopilot_interface.h"
 #include "stdio.h"
 #include "iostream"
+<<<<<<< HEAD
 
+=======
+#include "wiringPi.h"
+#include "softPwm.h"
+>>>>>>> f7273c687fb23071f457c338ff257bca69cc27d1
 using namespace std;
 
 
@@ -636,7 +641,11 @@ void
 Autopilot_Interface::
 start()
 {	
-
+	
+	wiringPiSetup();
+	pinMode(1, PWM_OUTPUT);
+	softPwmCreate(1, 5, 200);
+	sleep(2);
 	int result;
 
 	// --------------------------------------------------------------------------
@@ -720,9 +729,8 @@ start()
 		usleep(500000);
 	}
 
-	wiringPiSetup();
-	pinMode(1, PWM_OUTPUT);
-	softPwmCreate(1, pwm_out, 200);
+
+
 
 	while(1)
 	{
@@ -739,8 +747,8 @@ start()
 
 
 	int16_t	yaw_uav = local_data.vfr_hud.heading;
-	int32_t latitude = local_data.gps_raw_int.lat;
-	int32_t longtitude = local_data.gps_raw_int.lon;
+	//int32_t latitude = local_data.gps_raw_int.lat;
+	//int32_t longtitude = local_data.gps_raw_int.lon;
 
 	if (yaw_uav > 270 && yaw_uav < 360)
 		{
@@ -764,7 +772,6 @@ start()
 	//printf("\n");
 
 	printf("	La Ban (compass): %i \n ", yaw_uav);
-
 
 	//printf("	Latitude: %d.%07d Longtitude %d.%07d \n", abs(latitude/10000000), abs(latitude % 10000000), abs(longtitude/10000000), abs(longtitude/10000000));
 	printf("\n");

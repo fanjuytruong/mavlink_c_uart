@@ -57,8 +57,8 @@
 #include <inttypes.h>
 #include <iostream>
 
-//#include "wiringPi.h"
-//#include "softPwm.h"
+#include "wiringPi.h"
+#include "softPwm.h"
 using namespace std;
 
 
@@ -411,6 +411,13 @@ read_messages()
 
 					break;
 				}
+				
+				case MAVLINK_MSG_ID_ALTITUDE:
+				{
+					mavlink_msg_altitude_decode(&message, (&current_messages.altitude))
+					
+					break;
+				}
 
 				default:
 				{
@@ -655,10 +662,10 @@ Autopilot_Interface::
 start()
 {	
 	
-	//wiringPiSetup();
-	//pinMode(1, PWM_OUTPUT);
-	//softPwmCreate(1, 5, 200);
-	//sleep(2);
+	wiringPiSetup();
+	pinMode(26, PWM_OUTPUT);
+	softPwmCreate(26, 13, 200);
+	sleep(2);
 	int result;
 
 	// --------------------------------------------------------------------------
@@ -778,7 +785,7 @@ start()
 		    pwm_out = 13;
 		}
 
-	//softPwmWrite(1, pwm_out);
+	softPwmWrite(26, pwm_out);
 
 
 

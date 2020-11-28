@@ -232,6 +232,10 @@ struct Mavlink_Messages {
 	mavlink_flight_information_t flight_information;
 
 	mavlink_system_time_t system_time;
+	
+	// Altitude
+	
+	mavlink_msg_altitude altitude;
 
 	// System Parameters?
 

@@ -335,7 +335,7 @@ commands(Autopilot_Interface &api, bool autotakeoff)
 	//printf("    acc  (NED):  % f % f % f (m/s^2)\n", imu.xacc , imu.yacc , imu.zacc );
 	//printf("    gyro (NED):  % f % f % f (rad/s)\n", imu.xgyro, imu.ygyro, imu.zgyro);
 	//printf("    mag  (NED):  % f % f % f (Ga)\n"   , imu.xmag , imu.ymag , imu.zmag );
-
+    
 
 	//printf("	Position: % f % f % f  \n", pos_estimate.x, pos_estimate.y, pos_estimate.z);		//Xuat vi tri kinh do - vi do
 	//printf("	Angle: % f %f %f \n", pos_estimate.roll, pos_estimate.pitch, pos_estimate.yaw);		// Xuat cac goc ngang cua UAV

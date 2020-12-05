@@ -40,3 +40,46 @@ Chọn NO
 Chọn YES
 ```
 - Hoàn tất.
+
+
+
+### 2.3. Kết nối phần cứng
+Connect Pixhawk4 và Rasberry Pi bằng dây nối theo như dưới đây
+            
+            ```
+            TELEM2 (PIXHAWK 4)              PI (3B+)
+            TX ------------------------------ RX (PIN 10)
+            RX ------------------------------ TX (PIN 8)
+            GND ------------------------------ GND (PIN 6)
+            ```
+
+
+
+## 3. Run
+Trên Pi, truy cập vào thư mục:
+```
+$ cd mavlink_c_uart
+$ make
+```
+Sau đó chạy thử file mavlink_control
+```
+./mavlink_control -d /dev/ttyS0
+```
+
+Kết quả:
+```
+OPEN PORT
+Connected to /dev/ttyS0 with 921600 baud, 8 data bits, no parity, 1 stop bit (8N1)
+
+START READ THREAD 
+
+CHECK FOR HEARTBEAT
+Found
+
+GOT VEHICLE SYSTEM ID: 1
+GOT AUTOPILOT COMPONENT ID: 1
+...............................
+
+```
+
+_Chúc các bạn thành công_ :penguin:
